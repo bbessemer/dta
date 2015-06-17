@@ -17,4 +17,17 @@
     generated, and authenticates the user if and only if the two tokens match. (For an added layer of
     security at a minor speed cost, the server can destroy the unencrypted token after it encrypts it
     with the user's public key, preserving only the encrypted token. It would then also encrypt the token
-    returned to it by the client with this public key and compare the encrypted forms.)
+    returned to it by the client with this same key and compare the encrypted forms.)
+
+4.  Since the unencrypted token has now been transmitted over the network, it is immediately deactivated
+    and a new token is generated, encrypted, and sent to the client along with whatever resource has been
+    requested. This token is decrypted using the same private key as before (which can and should be cached
+    by the client for the sake of convenience).
+
+5.  When the client makes another page request or API call, the token from Step 4 is attached to that request,
+    and the process repeats from Step 4 onward.
+
+The security of the protocol comes from the fact that no information which can be used to authenticate the
+user is ever transmitted over the network or stored on the server. There is nothing an attacker can do, short
+of changing the programming of the server (which will have to be guarded against by other means), or gaining
+access to the client device (which it is the user's responsiblitity to prevent),
