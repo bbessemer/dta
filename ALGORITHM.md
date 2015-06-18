@@ -28,6 +28,9 @@
     and the process repeats from Step 4 onward.
 
 The security of the protocol comes from the fact that no information which can be used to authenticate the
-user is ever transmitted over the network or stored on the server. There is nothing an attacker can do, short
-of changing the programming of the server (which will have to be guarded against by other means), or gaining
-access to the client device (which it is the user's responsiblitity to prevent),
+user is ever transmitted over the network or stored on the server. There is nothing an attacker can do to fake
+authentication, short of changing the programming of the server (which will have to be guarded against by other
+means), guessing the authentication token or private key (which can be prevented with a good random number
+generator), breaking the encryption by brute force (which, with a decent key length, is impossible), or gaining
+access to the client device (which it is the user's responsiblitity to prevent). The user is in complete control
+of his own security.
